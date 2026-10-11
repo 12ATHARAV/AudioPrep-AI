@@ -73,11 +73,10 @@ jobs:
             set -e
             APP_DIR="/home/ubuntu/the-podcaster"
             mkdir -p $APP_DIR
+            touch $APP_DIR/backend.env
 
-            # Ensure latest docker-compose.yml exists on EC2
+            # Write production docker-compose.yml on EC2
             cat << 'EOF' > $APP_DIR/docker-compose.yml
-            version: '3.8'
-
             services:
               postgres:
                 image: postgres:16-alpine
@@ -105,7 +104,7 @@ jobs:
                   postgres:
                     condition: service_healthy
                 env_file:
-                  - $APP_DIR/backend.env
+                  - ./backend.env
                 volumes:
                   - temp_data:/app/data
                 ports:
