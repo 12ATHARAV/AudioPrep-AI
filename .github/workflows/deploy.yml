@@ -129,5 +129,7 @@ jobs:
 
             cd $APP_DIR
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            docker image prune -af || true
             docker compose pull backend frontend
             docker compose up -d --remove-orphans
+            docker image prune -af || true
