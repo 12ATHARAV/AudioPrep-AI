@@ -74,7 +74,7 @@ flowchart TD
         subgraph Pipeline ["Podcast Generation Pipeline"]
             direction TB
             Ingest["1. Ingestion: PyMuPDF + pymupdf4llm"]
-            Chunk["2. Chunking: Structure-Aware / Semantic / Contextual"]
+            Chunk["2. Chunking: Structure-Aware / Semantic / Contextual / Recursive"]
             Index["3. Hybrid Indexing: Qdrant Dense + BM25 Sparse"]
             Planner["4. LangGraph Topic Planner (Concept Dependency)"]
             Dialogue["5. Dialogue Generation (Host <-> Expert)"]
