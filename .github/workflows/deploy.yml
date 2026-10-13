@@ -3,6 +3,10 @@ name: AudioPrep CI/CD Pipeline
 on:
   push:
     branches: [ "main", "master" ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.gitignore'
   workflow_dispatch:
 
 env:
@@ -69,6 +73,8 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
+          timeout: 30m
+          command_timeout: 30m
           script: |
             set -e
             APP_DIR="/home/ubuntu/the-podcaster"
